@@ -1,7 +1,7 @@
 import re
 
 def le_assinatura():
-    #'''A funcao le os valores dos tracos linguisticos do modelo e devolve uma assinatura a ser comparada com os textos fornecidos'''
+    '''A funcao le os valores dos tracos linguisticos do modelo e devolve uma assinatura a ser comparada com os textos fornecidos'''
     print("Bem-vindo ao detector automático de COH-PIAH.")
     print("Informe a assinatura típica de um aluno infectado:")
 
@@ -16,7 +16,7 @@ def le_assinatura():
 
 
 def le_textos():
-    #'''A funcao le todos os textos a serem comparados e devolve uma lista contendo cada texto como um elemento'''
+    '''A funcao le todos os textos a serem comparados e devolve uma lista contendo cada texto como um elemento'''
     i = 1
     textos = []
     texto = input("Digite o texto " + str(i) +" (aperte enter para sair):")
@@ -29,7 +29,7 @@ def le_textos():
 
 
 def separa_sentencas(texto):
-    #'''A funcao recebe um texto e devolve uma lista das sentencas dentro do texto'''
+    '''A funcao recebe um texto e devolve uma lista das sentencas dentro do texto'''
     sentencas = re.split(r'[.!?]+', texto)
     if sentencas[-1] == '':
         del sentencas[-1]
@@ -37,18 +37,17 @@ def separa_sentencas(texto):
 
 
 def separa_frases(sentenca):
-    #'''A funcao recebe uma sentenca e devolve uma lista das frases dentro da sentenca'''
+    '''A funcao recebe uma sentenca e devolve uma lista das frases dentro da sentenca'''
     return re.split(r'[,:;]+', sentenca)
 
 
 def separa_palavras(frase):
-    #'''A funcao recebe uma frase e devolve uma lista das palavras dentro da frase'''
+    '''A funcao recebe uma frase e devolve uma lista das palavras dentro da frase'''
     return frase.split()
 
 
 def n_palavras_unicas(lista_palavras):
-    #'''Essa funcao recebe uma lista de palavras e devolve o numero de palavras que aparecem uma unica vez'''
-    #'''Amiga do separador de palavras
+    '''Essa funcao recebe uma lista de palavras e devolve o numero de palavras que aparecem uma unica vez'''
     freq = dict()
     unicas = 0
     for palavra in lista_palavras:
@@ -65,8 +64,7 @@ def n_palavras_unicas(lista_palavras):
 
 
 def n_palavras_diferentes(lista_palavras):
-    #'''Essa funcao recebe uma lista de palavras e devolve o numero de palavras diferentes utilizadas'''
-    #'''Amiga do separador de palavras
+    '''Essa funcao recebe uma lista de palavras e devolve o numero de palavras diferentes utilizadas'''
     freq = dict()
     for palavra in lista_palavras:
         p = palavra.lower()
@@ -79,7 +77,7 @@ def n_palavras_diferentes(lista_palavras):
 
 
 def media_caracteres_palavras(texto):
-    #'''Média simples do número de caracteres por palavra.'''
+    '''Média simples do número de caracteres por palavra.'''
     soma = 0
     qtd_palavras = 0
     for sentenca in separa_sentencas(texto):
@@ -91,7 +89,7 @@ def media_caracteres_palavras(texto):
     
 
 def type_token(texto):
-    #"""Número de palavras diferentes utilizadas em um texto divididas pelo total de palavras.'''  
+    '''Número de palavras diferentes utilizadas em um texto divididas pelo total de palavras.'''  
     qtd_palavras = 0
     lista_palavras = []
     for sentenca in separa_sentencas(texto):
@@ -104,7 +102,7 @@ def type_token(texto):
     
     
 def hapax_legomana(texto):
-    #'''Número de palavras utilizadas uma única vez dividido pelo número total de palavras.'''
+    '''Número de palavras utilizadas uma única vez dividido pelo número total de palavras.'''
     qtd_palavras = 0
     lista_palavras = []
     for sentenca in separa_sentencas(texto):
@@ -116,7 +114,7 @@ def hapax_legomana(texto):
 
 
 def media_caracteres_sentenca(texto):
-    #'''Média simples do número de caracteres por sentença.'''
+    '''Média simples do número de caracteres por sentença.'''
     soma = 0
     for item in separa_sentencas(texto):
         soma += len(item)
@@ -124,7 +122,7 @@ def media_caracteres_sentenca(texto):
     
     
 def complexidade(texto):
-    #'''Média simples do número de frases por sentença.'''  
+    '''Média simples do número de frases por sentença.'''  
     soma = 0
     for item in separa_sentencas(texto):
         soma += len(separa_frases(item))
@@ -132,7 +130,7 @@ def complexidade(texto):
 
 
 def media_caracteres_frase(texto):
-    #'''Média simples do número de caracteres por frase.'''
+    '''Média simples do número de caracteres por frase.'''
     soma = 0
     qtd_frases = 0
     for sentenca in separa_sentencas(texto):
@@ -142,7 +140,7 @@ def media_caracteres_frase(texto):
     return soma / qtd_frases
 
 def calcula_assinatura(texto):
-    #'''Essa funcao recebe um texto e deve devolver a assinatura do texto.'''
+    '''Essa funcao recebe um texto e deve devolver a assinatura do texto.'''
     wal = media_caracteres_palavras(texto)
     ttr = type_token(texto)
     hlr = hapax_legomana(texto)
@@ -154,7 +152,7 @@ def calcula_assinatura(texto):
 
     
 def compara_assinatura(as_a, as_b):
-    #''' Essa funcao recebe duas assinaturas de texto e deve devolver o grau de similaridade nas assinaturas.'''
+    ''' Essa funcao recebe duas assinaturas de texto e deve devolver o grau de similaridade nas assinaturas.'''
     soma_diferencas = 0
     for i in range(6):
         soma_diferencas += abs((as_a)[i] - (as_b)[i])
